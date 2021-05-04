@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import dj_database_url
+import django_heroku
 import os
 from pathlib import Path
 
@@ -183,3 +184,8 @@ LOGGING = {
         }
     }
 }
+
+
+# Heroku config
+
+django_heroku.settings(locals())
