@@ -4,6 +4,7 @@ from core.models import Metric
 # Register your models here.
 
 class MetricAdmin(admin.ModelAdmin):
+    list_filter = ('dataset',)
     list_display = ('dataset', 'phenotype', 'accuracy', 'accuracy_sd', 'f1_score', 'f1_score_sd')
   
 
