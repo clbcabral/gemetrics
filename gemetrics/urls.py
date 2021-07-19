@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from core.views import MetricView
+from core.views import MetricView, AnalysisView
 
 
 api = routers.DefaultRouter()
 api.register(r"metrics", MetricView)
+api.register(r"analysis", AnalysisView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
