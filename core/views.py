@@ -9,7 +9,7 @@ from core.serializers import MetricSerializer, AnalysisSerializer
 class MetricView(viewsets.ModelViewSet):
     queryset = Metric.objects.all()
     serializer_class = MetricSerializer
-    filterset_fields = ['dataset', 'phenotype']
+    filterset_fields = ['grammar', 'dataset', 'phenotype']
     filter_backends = [DjangoFilterBackend]
 
 class AnalysisView(viewsets.ModelViewSet):

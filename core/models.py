@@ -4,6 +4,7 @@ from django.db import models
 
 class Metric(models.Model):
 
+    grammar = models.CharField(max_length=20, verbose_name='Grammar name', null=False, blank=False)
     dataset = models.CharField(max_length=20, verbose_name='Dataset name', null=False, blank=False)
     phenotype = models.TextField(verbose_name='Phenotype', null=False)
     accuracy = models.DecimalField(max_digits=22, decimal_places=20, verbose_name='Accuracy')
@@ -16,7 +17,7 @@ class Metric(models.Model):
 
     class Meta:
         verbose_name_plural = 'Metrics'
-        ordering = ['-dataset', '-accuracy', '-f1_score']
+        ordering = ['-grammar', '-dataset', '-accuracy', '-f1_score']
 
 
 class Analysis(models.Model):
