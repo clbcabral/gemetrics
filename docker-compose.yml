@@ -1,0 +1,42 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./volumes/static:/app/static
+    depends_on:
+      - web
+    links:
+      - web
+  web:
+    build: .
+    container_name: webapp
+    entrypoint: /app/docker-entrypoint.sh
+    restart: always
+    volumes:
+      - ./volumes/logs:/app/logs
+      - ./volumes/static:/app/static
+      - .:/app
+    env_file:
+      - config/config.env
+    environment:
+      - DEPLOY=1
+    depends_on:
+      - db
+    links:
+      - db
+    expose:
+      - "8000"
+  db:
+    image: postgres:13
+    container_name: postgres
+    restart: always
+    env_file:
+      - config/config.env
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data/
