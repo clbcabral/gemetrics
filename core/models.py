@@ -11,6 +11,8 @@ class Metric(models.Model):
     accuracy_sd = models.DecimalField(max_digits=22, decimal_places=20, verbose_name='Accuracy SD')
     f1_score = models.DecimalField(max_digits=22, decimal_places=20, verbose_name='F1Score')
     f1_score_sd = models.DecimalField(max_digits=22, decimal_places=20, verbose_name='F1Score SD')
+    time = models.DecimalField(max_digits=22, decimal_places=6, verbose_name='Training time')
+    time_sd = models.DecimalField(max_digits=22, decimal_places=6, verbose_name='Training time SD')
 
     def __str__(self):
         return self.phenotype
