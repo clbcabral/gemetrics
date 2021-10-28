@@ -17,7 +17,7 @@ class AnalysisAdmin(admin.ModelAdmin):
 
 class StepAdmin(admin.ModelAdmin):
     list_filter = ('execution', 'grammar', 'dataset', 'generation')
-    list_display = ('execution', 'grammar', 'dataset', 'generation', 'phenotype', 'accuracy', 'f1_score', 'num_layers', 'num_params', 'time')
+    list_display = ('execution', 'grammar', 'dataset', 'generation', 'phenotype', 'accuracy', 'f1_score', 'time')
     search_fields = ('phenotype',)
 
 

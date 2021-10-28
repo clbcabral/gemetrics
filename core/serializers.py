@@ -17,4 +17,4 @@ class AnalysisSerializer(serializers.HyperlinkedModelSerializer):
 class StepSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Step
-        fields = ['execution', 'grammar', 'dataset', 'generation', 'phenotype', 'accuracy', 'f1_score', 'num_layers', 'num_params', 'time']
+        fields = ['execution', 'grammar', 'dataset', 'generation', 'phenotype', 'accuracy', 'f1_score', 'time']
