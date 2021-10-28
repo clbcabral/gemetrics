@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Metric, Analysis
+from core.models import Metric, Analysis, Step
 
 # Register your models here.
 
@@ -15,5 +15,12 @@ class AnalysisAdmin(admin.ModelAdmin):
     search_fields = ('dataset', 'cnn')
 
 
+class StepAdmin(admin.ModelAdmin):
+    list_filter = ('execution', 'grammar', 'dataset', 'generation')
+    list_display = ('execution', 'grammar', 'dataset', 'generation', 'phenotype', 'accuracy', 'f1_score', 'num_layers', 'num_params', 'time')
+    search_fields = ('phenotype',)
+
+
 admin.site.register(Metric, MetricAdmin)
 admin.site.register(Analysis, AnalysisAdmin)
+admin.site.register(Step, StepAdmin)
