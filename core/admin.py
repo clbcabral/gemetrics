@@ -4,8 +4,8 @@ from core.models import Metric, Analysis, Step
 # Register your models here.
 
 class MetricAdmin(admin.ModelAdmin):
-    list_filter = ('grammar', 'dataset',)
-    list_display = ('grammar', 'dataset', 'phenotype', 'accuracy', 'accuracy_sd', 'f1_score', 'f1_score_sd', 'time', 'time_sd')
+    list_filter = ('grammar', 'dataset', 'status')
+    list_display = ('grammar', 'dataset', 'phenotype', 'status', 'accuracy', 'accuracy_sd', 'f1_score', 'f1_score_sd', 'time', 'time_sd')
     search_fields = ('phenotype',)
   
 

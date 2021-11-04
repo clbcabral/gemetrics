@@ -5,7 +5,7 @@ from rest_framework import serializers
 class MetricSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Metric
-        fields = ['grammar', 'dataset', 'phenotype', 'accuracy', 'accuracy_sd', 'f1_score', 'f1_score_sd', 'time', 'time_sd']
+        fields = ['grammar', 'dataset', 'phenotype', 'status', 'accuracy', 'accuracy_sd', 'f1_score', 'f1_score_sd', 'time', 'time_sd']
 
 
 class AnalysisSerializer(serializers.HyperlinkedModelSerializer):

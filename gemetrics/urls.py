@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from core.views import MetricView, AnalysisView, StepView
+from core.views import MetricView, AnalysisView, StepView, \
+    save_new_phenotypes, mark_phenotype_as_trained, \
+        find_a_non_trained_phenotype_and_mark_as_training, find_trained_phenotype
 
 
 api = routers.DefaultRouter()
@@ -27,4 +29,8 @@ api.register(r"steps", StepView)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(api.urls)),
+    path('phenotypes/save_new_phenotypes/', save_new_phenotypes),
+    path('phenotypes/mark_as_trained/', mark_phenotype_as_trained),
+    path('phenotypes/find_non_trained/', find_a_non_trained_phenotype_and_mark_as_training),
+    path('phenotypes/find_trained/', find_trained_phenotype),
 ]
