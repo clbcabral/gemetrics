@@ -59,14 +59,15 @@ def mark_phenotype_as_trained(request):
         grammar = request.POST.get('grammar')
         dataset = request.POST.get('dataset')
         phenotype = request.POST.get('phenotype')
-        if Metric.objects.filter(grammar=grammar, dataset=dataset, phenotype=phenotype, status=Metric.TRAINING).exists():
+        filterqs = Metric.objects.filter(grammar=grammar, dataset=dataset, phenotype=phenotype, status=Metric.TRAINING)
+        if filterqs.exists():
             accuracy = request.POST.get('accuracy')
             accuracy_sd = request.POST.get('accuracy_sd')
             f1_score = request.POST.get('f1_score')
             f1_score_sd = request.POST.get('f1_score_sd')
             time = request.POST.get('time')
             time_sd = request.POST.get('time_sd')
-            metric = Metric.objects.get(grammar=grammar, dataset=dataset, phenotype=phenotype, status=Metric.TRAINING)
+            metric = Metric.objects.get(pk=filterqs[0].pk)
             metric.accuracy = accuracy
             metric.accuracy_sd = accuracy_sd
             metric.f1_score = f1_score
@@ -100,8 +101,13 @@ def find_trained_phenotype(request):
         dataset = request.POST.get('dataset')
         phenotype = request.POST.get('phenotype')
         metrics = None
-        if Metric.objects.filter(grammar=grammar, dataset=dataset, phenotype=phenotype, status=Metric.TRAINED).exists():
-            metric = Metric.objects.get(grammar=grammar, dataset=dataset, phenotype=phenotype, status=Metric.TRAINED)
+        filterqs = Metric.objects.filter(grammar=grammar, dataset=dataset, phenotype=phenotype, status=Metric.TRAINED)
+        if filterqs.exists():
+            metric = filterqs[0]
+            # Remove duplicated entries.
+            if filterqs.count() > 1:
+                for duplicated in filterqs[1:]:
+                    Metric.objects.get(pk=duplicated.pk).delete()
             metrics = {
                 'accuracy': metric.accuracy,
                 'accuracy_sd': metric.accuracy_sd,
@@ -110,4 +116,5 @@ def find_trained_phenotype(request):
                 'time': metric.time,
                 'time_sd': metric.time_sd,
             }
+
         return JsonResponse({'metrics': metrics})
