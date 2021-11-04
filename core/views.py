@@ -85,12 +85,11 @@ def find_a_non_trained_phenotype_and_mark_as_training(request):
         dataset = request.POST.get('dataset')
         metrics = Metric.objects.filter(grammar=grammar, dataset=dataset, status=Metric.NEW).order_by('pk')
         phenotypes = []
-        if metrics:
-            phenotype = metrics[0].phenotype
-            metric = Metric.objects.get(grammar=grammar, dataset=dataset, phenotype=phenotype)
+        if metrics.exists():
+            metric = Metric.objects.get(pk=metrics[0].pk)
             metric.status = Metric.TRAINING
             metric.save()
-            phenotypes.append(phenotype)
+            phenotypes.append(metric.phenotype)
         return JsonResponse({'phenotypes': phenotypes})
 
 
