@@ -33,6 +33,7 @@ class Metric(models.Model):
 
 class Analysis(models.Model):
     
+    paper = models.CharField(max_length=255, verbose_name='Paper', null=True)
     dataset = models.CharField(max_length=255, verbose_name='Dataset', null=False)
     cnn = models.CharField(max_length=255, verbose_name='CNN', null=False)
     accuracy = models.DecimalField(max_digits=22, decimal_places=20, verbose_name='Accuracy')
@@ -43,11 +44,11 @@ class Analysis(models.Model):
     time = models.DecimalField(max_digits=22, decimal_places=6, verbose_name='Time')
 
     def __str__(self):
-        return self.dataset
+        return '%s %s %s' % (self.paper, self.dataset, self.cnn)
 
     class Meta:
         verbose_name_plural = 'Analysis'
-        ordering = ['-dataset', '-cnn', '-accuracy', '-f1_score']
+        ordering = ['paper', '-dataset', '-cnn', '-accuracy', '-f1_score']
 
 
 class Step(models.Model):

@@ -18,7 +18,7 @@ class MetricView(viewsets.ModelViewSet):
 class AnalysisView(viewsets.ModelViewSet):
     queryset = Analysis.objects.all()
     serializer_class = AnalysisSerializer
-    filterset_fields = ['dataset', 'cnn']
+    filterset_fields = ['paper', 'dataset', 'cnn']
     filter_backends = [DjangoFilterBackend]
 
 

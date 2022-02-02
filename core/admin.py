@@ -10,9 +10,9 @@ class MetricAdmin(admin.ModelAdmin):
   
 
 class AnalysisAdmin(admin.ModelAdmin):
-    list_filter = ('dataset', 'cnn')
-    list_display = ('dataset', 'cnn', 'accuracy', 'f1_score', 'size', 'num_layers', 'num_params', 'time')
-    search_fields = ('dataset', 'cnn')
+    list_filter = ('paper', 'dataset', 'cnn')
+    list_display = ('paper', 'dataset', 'cnn', 'accuracy', 'f1_score', 'size', 'num_layers', 'num_params', 'time')
+    search_fields = ('paper', 'dataset', 'cnn')
 
 
 class StepAdmin(admin.ModelAdmin):
