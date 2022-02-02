@@ -11,7 +11,7 @@ class MetricSerializer(serializers.HyperlinkedModelSerializer):
 class AnalysisSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Analysis
-        fields = ['dataset', 'cnn', 'accuracy', 'f1_score', 'size', 'num_layers', 'num_params', 'time']
+        fields = ['paper', 'dataset', 'cnn', 'accuracy', 'f1_score', 'size', 'num_layers', 'num_params', 'time']
 
 
 class StepSerializer(serializers.HyperlinkedModelSerializer):
